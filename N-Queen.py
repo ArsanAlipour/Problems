@@ -1,14 +1,14 @@
 import random
 
 
-N = 4  
-P_SIZE = 200
-M_RATE = 0.8
+N_QUEENS = 4
+POPULATION_SIZE = 200
+MUTATION_RATE = 0.8
 EPOCH = 200
 
 
 
-def init_population(population_size:int, n:int) -> list:
+def initial_population(population_size:int, n:int) -> list:
     population_list = []
     for i in range(population_size):
         new_member = []
@@ -30,7 +30,7 @@ def cross_ower(population_list:list) -> list:
 
 
 
-def mutation(population_list, mutation_rate, n):
+def mutate(population_list:list, mutation_rate:float, n:int) -> list:
     choosen_ones = [i for i in range(len(population_list)//2,len(population_list))]
     for i in range(len(population_list)//2):
         new_random = random.randint(0,(len(population_list)//2)-1)
@@ -46,7 +46,7 @@ def mutation(population_list, mutation_rate, n):
 
 
 
-def fitness(population_list, n):
+def fitness(population_list:list, n:int) -> list:
     conflict = 0
     lenght = len(population_list)
     for i in range(lenght):
@@ -72,23 +72,23 @@ def fitness(population_list, n):
 
 
 def main():
-    population = init_population(P_SIZE, N)
-    population = fitness(population, N)
-    if population[0][N] == 0:
-        print(f"solution found: {population[0][:N]}")
+    population = initial_population(POPULATION_SIZE, N_QUEENS)
+    population = fitness(population, N_QUEENS)
+    if population[0][N_QUEENS] == 0:
+        print(f"solution found: {population[0][:N_QUEENS]}")
     else:
         for i in range(EPOCH):
             print("------------------------------------------------------------")
             print(f"Epoch {i+1}")
             population = cross_ower(population)
-            population = mutation(population, M_RATE, N)
-            population = fitness(population, N)
+            population = mutate(population, MUTATION_RATE, N_QUEENS)
+            population = fitness(population, N_QUEENS)
             population = population[:len(population)//2]
-            if population[0][N] == 0:
-                print(f"solution found: {population[0][:N]}")
+            if population[0][N_QUEENS] == 0:
+                print(f"solution found: {population[0][:N_QUEENS]}")
                 break
             else:
-                print(f"best solution so far: {population[0][:N]} ---> {population[0][N]}")
+                print(f"best solution so far: {population[0][:N_QUEENS]} ---> {population[0][N_QUEENS]}")
 
 
 if __name__ == "__main__":
