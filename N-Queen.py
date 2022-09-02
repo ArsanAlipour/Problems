@@ -1,10 +1,10 @@
 import random
 
 
-N = int(input("please enter number of queens: "))
-P_SIZE = int(input("please enter population size: "))
-M_RATE = float(input("please enter mutation rate (0 < n <= 1): "))
-EPOCH = int(input("please enter number of number of epoch: "))
+N = 4  
+P_SIZE = 200
+M_RATE = 0.8
+EPOCH = 200
 
 
 
@@ -89,10 +89,6 @@ def main():
                 break
             else:
                 print(f"best solution so far: {population[0][:N]} ---> {population[0][N]}")
-
-    input()
-    input()
-    input()
 
 
 if __name__ == "__main__":
