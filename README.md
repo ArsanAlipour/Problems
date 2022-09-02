@@ -3,7 +3,7 @@ in the name of GOD.
 Hello world!!!
 
 
-I'm Arsan Alpour
+I'm Arsan Alipour
 
 
 In this repository, we solve computer problems using different algorithms.
